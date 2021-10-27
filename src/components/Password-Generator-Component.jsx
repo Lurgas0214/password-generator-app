@@ -45,7 +45,6 @@ class PasswordGeneratorComponent extends React.Component {
         const { digits, symbols, lowerChars, upperChars, withDigits, withSymbols, withLowerCase, withUpperCase } = this.state;
         let chars = "", result, max, i;
 
-        if (number < 5) return "";
         if (withDigits) chars += digits;
         if (withSymbols) chars += symbols;
         if (withLowerCase) chars += lowerChars;
@@ -74,9 +73,7 @@ class PasswordGeneratorComponent extends React.Component {
     onClickHandle = () => {
         const value = this.state.numberOfSymbols;
 
-        if (!value) return;
-
-        this.setState({ password: this.generatePassword(value) })
+        if (value >= 5) this.setState({ password: this.generatePassword(value) });
     };
 
     onCheckBoxHandle = (attribute) => {
