@@ -65,15 +65,15 @@ class PasswordGeneratorComponent extends React.Component {
         const copyText = document.getElementById("password");
 
         copyText.select();
-        copyText.setSelectionRange(0, 99999);
+        copyText.setSelectionRange(0, this.state.password.length);
 
-        document.execCommand("copy");
+        navigator.clipboard.writeText(copyText.value);
     };
 
     onClickHandle = () => {
-        const value = this.state.numberOfSymbols;
-
-        if (value >= 5) this.setState({ password: this.generatePassword(value) });
+        const { numberOfSymbols, withDigits, withLowerCase, withUpperCase, withSymbols } = this.state;
+        if (numberOfSymbols >= 5 && (withDigits || withLowerCase || withUpperCase || withSymbols)) this.setState({ password: this.generatePassword(numberOfSymbols) });
+        else this.setState({ password: "" });
     };
 
     onCheckBoxHandle = (attribute) => {
