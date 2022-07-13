@@ -64,9 +64,6 @@ class PasswordGeneratorComponent extends React.Component {
     onCopyHandle = () => {
         const copyText = document.getElementById("password");
 
-        copyText.select();
-        copyText.setSelectionRange(0, this.state.password.length);
-
         navigator.clipboard.writeText(copyText.value);
     };
 
